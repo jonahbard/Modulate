@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modulate_vsc/screens/create_track.dart';
 import 'package:modulate_vsc/screens/learn.dart';
 import 'package:modulate_vsc/screens/explore.dart';
 import 'package:modulate_vsc/screens/profile.dart';
@@ -15,12 +16,25 @@ class _HomeState extends State<Home> {
     ProfilePage()
   ];
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text("Learn"),
+          actions: [
+            Center(
+                child: FlatButton(
+              child: Text("New Track"),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => CreateTrack()));
+              },
+            ))
+          ],
         ),
         body: _pageOptions[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(

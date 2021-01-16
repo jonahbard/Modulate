@@ -14,7 +14,6 @@ class DatabaseService {
 
   Future createUserData(List<Track> tracks) async {
     return users.doc(uid).set({
-      "name": name,
       "uid": uid,
       "email": email,
       "tracks": tracks,
@@ -32,5 +31,10 @@ class DatabaseService {
     }
   }
 
-  //      Map<String, dynamic> data = document.data();
+  Future addTrack(Track newTrack) async {
+    DocumentSnapshot document = await users.doc(uid).get();
+    Map<String, dynamic> data = document.data();
+    List<Track> tempTracks = data["tracks"];
+    tempTracks.add(newTrack);
+  }
 }
