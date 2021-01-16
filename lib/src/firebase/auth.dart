@@ -1,14 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:modulate_vsc/src/firebase/database.dart';
+import 'package:modulate_vsc/src/track.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // sign in with email
-  Future signInWithEmail(String email, String password) async {
+  Future signInWithEmail(
+      String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
+      await DatabaseService(user.displayName, user.email, user.uid).createUserData(List<Track>());
       return "success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -18,6 +22,4 @@ class AuthService {
       }
     }
   }
-
-  Future loadData(FirebaseUser) {}
 }
