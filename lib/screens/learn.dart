@@ -19,15 +19,15 @@ class _LearnPageState extends State<LearnPage> {
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            label: "Learn",
+            title: Text("Learn"),
             icon: Icon(Icons.library_books),
           ),
           BottomNavigationBarItem(
-            label: "Explore",
+            title: Text("Explore"),
             icon: Icon(Icons.search),
           ),
           BottomNavigationBarItem(
-            label: "Profile",
+            title: Text("Profile"),
             icon: Icon(Icons.account_circle),
           ),
         ],
