@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:modulate_vsc/screens/learn.dart';
+import 'package:modulate_vsc/screens/explore.dart';
+import 'package:modulate_vsc/screens/profile.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -6,6 +9,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  static List<Widget> _pageOptions = <Widget>[
+    LearnPage(),
+    ExplorePage(),
+    ProfilePage()
+  ];
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -14,7 +22,7 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text("Learn"),
         ),
-        body: Text("home screen"),
+        body: _pageOptions[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           iconSize: 20,
