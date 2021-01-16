@@ -5,6 +5,7 @@ import 'package:modulate_vsc/screens/home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // hello
   runApp(MyApp());
 }
 
