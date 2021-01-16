@@ -6,6 +6,7 @@ class LearnPage extends StatefulWidget {
 }
 
 class _LearnPageState extends State<LearnPage> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +14,7 @@ class _LearnPageState extends State<LearnPage> {
         title: Text("Learn"),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        currentIndex: _currentIndex,
         iconSize: 20,
         backgroundColor: Colors.grey[200],
         type: BottomNavigationBarType.fixed,
@@ -31,6 +32,11 @@ class _LearnPageState extends State<LearnPage> {
             icon: Icon(Icons.account_circle),
           ),
         ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }
