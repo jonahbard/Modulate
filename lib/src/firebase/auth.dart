@@ -6,8 +6,9 @@ class AuthService {
   // sign in with email
   Future signInWithEmail(String email, String password) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
-      FirebaseUser user = result.user
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User user = result.user;
       return "success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -18,9 +19,5 @@ class AuthService {
     }
   }
 
-
-  Future loadData(FirebaseUser){
-
-  }
-
+  Future loadData(FirebaseUser) {}
 }
