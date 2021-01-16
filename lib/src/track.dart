@@ -1,23 +1,23 @@
-import 'package:modulate_vsc/src/module.dart';
-
 class Track {
   String name;
-  List<Module> modules;
+  List<String> moduleNames;
+  List<String> moduleContent;
   int progress;
 
-  Track(this.name, this.modules, this.progress);
-
-  addModule(Module newModule) {
-    modules.add(newModule);
+  Track(String name, List<String> moduleNames, List<String> moduleContent,
+      int progress) {
+    this.name = name;
+    this.moduleNames = moduleNames;
+    this.moduleContent = moduleContent;
+    this.progress = progress;
   }
-}
 
-class TrackList {
-  List<Track> tracks;
-
-  TrackList(this.tracks);
-
-  addTrack(Track newTrack) {
-    tracks.add(newTrack);
+  Map<String, dynamic> getMap() {
+    return {
+      "name": this.name,
+      "moduleNames": this.moduleNames,
+      'moduleContent': this.moduleContent,
+      "progress": this.progress,
+    };
   }
 }
