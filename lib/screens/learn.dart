@@ -12,6 +12,26 @@ class _LearnPageState extends State<LearnPage> {
       appBar: AppBar(
         title: Text("Learn"),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        iconSize: 20,
+        backgroundColor: Colors.grey[200],
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            label: "Learn",
+            icon: Icon(Icons.library_books),
+          ),
+          BottomNavigationBarItem(
+            label: "Explore",
+            icon: Icon(Icons.search),
+          ),
+          BottomNavigationBarItem(
+            label: "Profile",
+            icon: Icon(Icons.account_circle),
+          ),
+        ],
+      ),
     );
   }
 }
