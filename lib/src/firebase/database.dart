@@ -3,16 +3,17 @@ import 'package:modulate_vsc/src/track.dart';
 
 class DatabaseService {
   final String uid;
-  final String name;
-  final String email;
 
-  DatabaseService(this.name, this.email, this.uid);
+  DatabaseService(this.uid);
 
   // collection reference
   final CollectionReference users =
       FirebaseFirestore.instance.collection("users");
 
-  Future createUserData(List<Track> tracks) async {
+  Future createUserData(
+    List<Track> tracks,
+    String email,
+  ) async {
     return users.doc(uid).set({
       "uid": uid,
       "email": email,
@@ -34,7 +35,23 @@ class DatabaseService {
   Future addTrack(Track newTrack) async {
     DocumentSnapshot document = await users.doc(uid).get();
     Map<String, dynamic> data = document.data();
-    List<Track> tempTracks = data["tracks"];
-    tempTracks.add(newTrack);
+    var tracks = data["tracks"];
+    tracks.add(newTrack);
+    users.doc(uid).update({
+      "tracks": tracks,
+    });
+  }
+
+  Future getTracks() async {
+    DocumentSnapshot document = await users.doc(uid).get();
+    addTrack(Track("track 1", null, 5));
+    Map<String, dynamic> data = document.data();
+    print(data);
+    // TrackList tempTracks = TrackList(data["tracks"]);
+    // if (tempTracks.tracks.isEmpty) {
+    //   return null;
+    // } else {
+    //   return tempTracks;
+    // }
   }
 }

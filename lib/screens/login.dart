@@ -50,15 +50,19 @@ class _LoginScreenState extends State<LoginScreen> {
               RaisedButton(
                 child: Text("Login"),
                 onPressed: () async {
-                  String result =
-                      await AuthService().signInWithEmail(_email, _password);
-                  if (result == "success") {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => Home()));
+                  if (_email != null || _password != null) {
+                    String result =
+                        await AuthService().signInWithEmail(_email, _password);
+                    if (result == "success") {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Home()));
+                    } else {
+                      print("your info was wrong $result");
+                    }
                   } else {
-                    print("your info was wrong $result");
+                    print("fill out the forms");
                   }
                 },
               ),

@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modulate_vsc/src/firebase/database.dart';
+import 'package:modulate_vsc/src/track.dart';
 
 class LearnPage extends StatefulWidget {
   @override
@@ -6,30 +9,34 @@ class LearnPage extends StatefulWidget {
 }
 
 class _LearnPageState extends State<LearnPage> {
-  Widget _buildTrackList() {
-    return new ListView.builder(
-      itemBuilder: (context, index){
-        if (index < _trackList.length){
-          return _buildTrackInList(_trackList[index].trackName, index);
-          }
-        }
-      }
-      )
+  TrackList tracks;
+
+  _LearnPageState() {
+    getTracks();
   }
-  Widget buildTrackInList(String trackName, int index){
-    return Card(
-      child: ListTile(
-        title: Text("Track 1"), //replace with function that gets track title
-        subtitle: Text("3/5 modules completed"), //replace with function that calculates tasks completed
-        onTap: () => _openTrack(index)
-        )
-      ),
-    );
+
+  getTracks() async {
+    String uid = FirebaseAuth.instance.currentUser.uid;
+    if (await DatabaseService(uid).getTracks() == null) {
+      print("no values");
+    } else {
+      tracks = await DatabaseService(uid).getTracks();
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Learn Page"),
+      child: tracks != null
+          ? ListView.builder(
+              itemCount: tracks.tracks.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(tracks.tracks[index].name),
+                );
+              },
+            )
+          : Text("No tracks"),
     );
   }
 }
