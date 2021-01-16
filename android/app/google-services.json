@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "809850447390",
+    "project_id": "modulate-28e50",
+    "storage_bucket": "modulate-28e50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809850447390:android:742ca993c92efc98aff00f",
+        "android_client_info": {
+          "package_name": "com.example.modulate_vsc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809850447390-h2ni7k3bictnbduqh2o2airjunlm6k36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkRgzd-FtLIYLLbk-kSc2JaDn3b15mbdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809850447390-h2ni7k3bictnbduqh2o2airjunlm6k36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
