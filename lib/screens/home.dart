@@ -22,15 +22,15 @@ class _HomeState extends State<Home> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              title: Text("Learn"),
+              label: "Learn",
               icon: Icon(Icons.library_books),
             ),
             BottomNavigationBarItem(
-              title: Text("Explore"),
+              label: "Explore",
               icon: Icon(Icons.search),
             ),
             BottomNavigationBarItem(
-              title: Text("Profile"),
+              label: "Profile",
               icon: Icon(Icons.account_circle),
             ),
           ],
