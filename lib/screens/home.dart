@@ -25,15 +25,16 @@ class _HomeState extends State<Home> {
           title: Text("Learn"),
           actions: [
             Center(
-                child: FlatButton(
-              child: Text("New Track"),
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => CreateTrack()));
-              },
-            ))
+              child: FlatButton(
+                child: Text("New Track"),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => CreateTrack()));
+                },
+              ),
+            )
           ],
         ),
         body: _pageOptions[_currentIndex],
