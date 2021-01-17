@@ -9,15 +9,18 @@ class TrackHome extends StatefulWidget {
   TrackHome({this.name});
 
   @override
-  _TrackHomeState createState() => _TrackHomeState(name: name);
+  _TrackHomeState createState() => _TrackHomeState(name);
 }
 
 class _TrackHomeState extends State<TrackHome> {
-  final String name;
+  String name;
   List<dynamic> _moduleNames = [];
   List<dynamic> _moduleInfo = [];
 
-  _TrackHomeState({this.name});
+  _TrackHomeState(String name){
+    this.name = name;
+    getData();
+  }
 
   getData() async {
     String uid = FirebaseAuth.instance.currentUser.uid;
@@ -31,7 +34,6 @@ class _TrackHomeState extends State<TrackHome> {
   }
 
   Widget _buildView() {
-    getData();
     return ListView.builder(
         itemCount: _moduleNames.length,
         itemBuilder: (context, index) {
