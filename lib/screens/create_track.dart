@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modulate_vsc/screens/home.dart';
-import 'package:modulate_vsc/screens/learn.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
 import 'package:modulate_vsc/src/track.dart';
 
@@ -12,8 +11,8 @@ class CreateTrack extends StatefulWidget {
 
 class _CreateTrackState extends State<CreateTrack> {
   String _name = "name";
-  List<String> _moduleNames = [""];
-  List<String> _moduleContents = [""];
+  List<String> _moduleNames = [];
+  List<String> _moduleContents = List<String>();
 
   void _pushAddEditableModule() {
     String editableName = "";
@@ -26,6 +25,8 @@ class _CreateTrackState extends State<CreateTrack> {
               IconButton(
                   icon: Icon(Icons.check),
                   onPressed: () {
+                    print(editableName);
+                    print(editableContent);
                     _addModule(editableName, editableContent);
                     Navigator.pop(context);
                   })
@@ -35,7 +36,7 @@ class _CreateTrackState extends State<CreateTrack> {
             children: <Widget>[
               TextField(
                   autofocus: true,
-                  onSubmitted: (val) {
+                  onChanged: (val) {
                     editableName = val;
                     //Navigator.pop(context);
                   },
@@ -44,7 +45,7 @@ class _CreateTrackState extends State<CreateTrack> {
                       contentPadding: const EdgeInsets.all(16.0))),
               TextField(
                   autofocus: true,
-                  onSubmitted: (val) {
+                  onChanged: (val) {
                     editableContent = val;
                     //Navigator.pop(context);
                   },
@@ -60,11 +61,15 @@ class _CreateTrackState extends State<CreateTrack> {
     return new ListView.builder(
         itemCount: _moduleNames.length,
         itemBuilder: (context, index) {
-          if (index < _moduleNames.length) {
-            return _buildModuleInList(
-                _moduleNames[index], _moduleContents[index], index);
-          } else {
+          if (_moduleNames == null) {
             return Text("create a module");
+          } else {
+            if (index < _moduleNames.length) {
+              return _buildModuleInList(
+                  _moduleNames[index], _moduleContents[index], index);
+            } else {
+              return Text("create a module");
+            }
           }
         });
   }
@@ -74,7 +79,7 @@ class _CreateTrackState extends State<CreateTrack> {
         child: ListTile(
             title: Text(name), //replace with function that gets track title
             subtitle: Text(
-                "info goes here"), //replace with function that calculates tasks completed
+                info), //replace with function that calculates tasks completed
             onTap: () => _pushAddEditableModule()));
   }
 
@@ -90,11 +95,14 @@ class _CreateTrackState extends State<CreateTrack> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Create Track"),
+          title: Text("Create Task"),
           leading: IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Home()));
               }),
           actions: <Widget>[
             IconButton(
@@ -102,11 +110,11 @@ class _CreateTrackState extends State<CreateTrack> {
                 onPressed: () async {
                   Track track = Track(_name, _moduleNames, _moduleContents, 0);
                   String uid = FirebaseAuth.instance.currentUser.uid;
-                  var result =
-                      await DatabaseService(uid).addTrack(track.getMap());
-                  Navigator.pop(context
-                      //MaterialPageRoute(builder: (BuildContext context) => Home()));
-                      );
+                  await DatabaseService(uid).addTrack(track.getMap());
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Home()));
                 })
           ],
         ),
