@@ -65,9 +65,9 @@ class _ExplorePageState extends State<ExplorePage> {
                   exploreCard(
                       "Introduction to AI", 35, AssetImage('assets/ai.png')),
                   exploreCard(
-                      "How to spel", 17, AssetImage('assets/algebra.jpg')),
+                      "Linear Algebra", 17, AssetImage('assets/algebra.jpg')),
                   exploreCard(
-                      "Gramar is cool", 21, AssetImage('assets/globe.jpg')),
+                      "Human Geography", 21, AssetImage('assets/globe.jpg')),
                 ],
               ),
             ),
@@ -84,11 +84,11 @@ class _ExplorePageState extends State<ExplorePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  exploreCard("Introduction to AI", 35,
+                  exploreCard("The Stock Market", 24,
                       AssetImage('assets/investing.jpg')),
-                  exploreCard(
-                      "How to spel", 17, AssetImage('assets/leadership.jpg')),
-                  exploreCard("Gramar is cool", 21,
+                  exploreCard("Basics of Leadership", 30,
+                      AssetImage('assets/leadership.jpg')),
+                  exploreCard("Linguistics", 22,
                       AssetImage('assets/linguistic_thing.jpg')),
                 ],
               ),
@@ -106,12 +106,12 @@ class _ExplorePageState extends State<ExplorePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  exploreCard("Introduction to AI", 35,
-                      AssetImage('assets/writing.jpg')),
                   exploreCard(
-                      "How to spel", 17, AssetImage('assets/mobiledev.png')),
+                      "Creative Writing", 26, AssetImage('assets/writing.jpg')),
+                  exploreCard("App Development", 99999,
+                      AssetImage('assets/mobiledev.png')),
                   exploreCard(
-                      "Gramar is cool", 21, AssetImage('assets/money.jpg')),
+                      "How to Get Rich", 47, AssetImage('assets/money.jpg')),
                 ],
               ),
             ),
@@ -127,11 +127,11 @@ class _ExplorePageState extends State<ExplorePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  exploreCard("Introduction to AI", 35,
+                  exploreCard("Intro to Sociology", 31,
                       AssetImage('assets/society.jpg')),
-                  exploreCard("How to spel", 17, AssetImage('assets/usa.jpg')),
+                  exploreCard("US History", 36, AssetImage('assets/usa.jpg')),
                   exploreCard(
-                      "Gramar is cool", 21, AssetImage('assets/webdev.jpg')),
+                      "Webs Design", 16, AssetImage('assets/webdev.jpg')),
                 ],
               ),
             )
