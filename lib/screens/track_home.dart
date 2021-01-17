@@ -59,11 +59,47 @@ class _TrackHomeState extends State<TrackHome> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        elevation: 0,
       ),
-      body: _buildView(),
+      body: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                height: size.height * 0.15,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                  color: Colors.blue,
+                ),
+              ),
+              Column(
+                children: [
+                  Container(
+                    width: size.width,
+                    height: size.height * 0.08,
+                    child: Text(
+                      name,
+                      style: TextStyle(fontSize: 40, color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          Container(
+            width: size.width,
+            height: size.height*0.6,
+            child: _buildView(),
+          )
+        ],
+      ),
     );
   }
 }

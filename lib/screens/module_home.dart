@@ -8,7 +8,6 @@ class ModuleHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(name);
     Size size = MediaQuery.of(context).size;
     return Container(
       child: Scaffold(
@@ -20,12 +19,11 @@ class ModuleHome extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  //color: Colors.black,
                   height: size.height * 0.2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(36),
-                      bottomRight: Radius.circular(36),
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
                     ),
                     color: Colors.blue,
                   ),
