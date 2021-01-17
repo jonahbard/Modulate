@@ -47,19 +47,25 @@ class DatabaseService {
     return [trackNames, progress];
   }
 
-  Future getTrack(String trackName) async {
-    List<String> moduleNames;
-    List<int> moduleContent;
-    Map<String, dynamic> data; 
+  Future<List<Object>> getTrack(String trackName) async {
+    List<dynamic> moduleNames;
+    List<dynamic> moduleContent;
     await users
         .doc(uid)
         .collection("Tracks")
         .doc(trackName)
         .get()
-        .then((snapshot){
-              if (snapshot.exists) {
-                  data = snapshot.data();
-                }
-            });
+        .then((snapshot) {
+      if (snapshot.exists) {
+        snapshot.data().entries.forEach((element) {
+          if (element.key == "moduleContent") {
+            moduleContent = element.value;
+          } else if (element.key == "moduleNames") {
+            moduleNames = element.value;
+          }
+        });
+      }
+    });
+    return [moduleNames, moduleContent];
   }
 }
