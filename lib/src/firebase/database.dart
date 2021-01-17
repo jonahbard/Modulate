@@ -48,5 +48,19 @@ class DatabaseService {
     return [trackNames, progress];
   }
 
+  Future getTrack(String trackName) async {
+    List<String> moduleNames;
+    List<int> moduleContent;
+
+    await users
+        .doc(uid)
+        .collection("Tracks")
+        .doc(trackName)
+        .get()
+        .then((snapshot) => {
+              if (snapshot.exists) {print("snapshotdata ${snapshot.data()}")}
+            });
+  }
+
   Future getModules() async {}
 }

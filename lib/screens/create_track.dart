@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:modulate_vsc/screens/home.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
 import 'package:modulate_vsc/src/track.dart';
 
@@ -101,8 +100,7 @@ class _CreateTrackState extends State<CreateTrack> {
         leading: IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (BuildContext context) => Home()));
+              Navigator.pop(context);
             }),
         actions: <Widget>[
           IconButton(
@@ -111,10 +109,7 @@ class _CreateTrackState extends State<CreateTrack> {
                 Track track = Track(_name, _moduleNames, _moduleContents, 0);
                 String uid = FirebaseAuth.instance.currentUser.uid;
                 await DatabaseService(uid).addTrack(track.getMap());
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Home()));
+                Navigator.pop(context);
               })
         ],
       ),

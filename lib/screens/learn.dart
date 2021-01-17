@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modulate_vsc/screens/track_home.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
 
 class LearnPage extends StatefulWidget {
@@ -8,25 +9,34 @@ class LearnPage extends StatefulWidget {
 }
 
 class _LearnPageState extends State<LearnPage> {
+  bool showTracks = false;
   List<String> trackNames;
   List<int> progress;
 
   _LearnPageState() {
-    print("created");
     getTracks();
   }
 
-  Widget _buildView(){
-    return trackNames != null
-          ? ListView.builder(
-              itemCount: trackNames.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(trackNames[index]),
-                );
-              },
-            )
-          : Text("No tracks");
+  Widget _buildView() {
+    return showTracks
+        ? ListView.builder(
+            itemCount: trackNames.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(trackNames[index]),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TrackHome(name: trackNames[index]),
+                    ),
+                  );
+                },
+
+              );
+            },
+          )
+        : Text("No tracks");
   }
 
   getTracks() async {
@@ -35,6 +45,7 @@ class _LearnPageState extends State<LearnPage> {
     if (result[0] != null) {
       trackNames = result[0];
       progress = result[1];
+      showTracks = true;
     }
   }
 

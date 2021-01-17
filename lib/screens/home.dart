@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
             child: FlatButton(
               child: Text("New Track"),
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => CreateTrack()));
@@ -38,11 +38,21 @@ class _HomeState extends State<Home> {
       ),
       AppBar(
         title: Text("Explore"),
-        actions: [IconButton(icon: Icon(Icons.search))],
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: null,
+          ),
+        ],
       ),
       AppBar(
         title: Text("Profile"),
-        actions: [IconButton(icon: Icon(Icons.settings))],
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: null,
+          ),
+        ],
       ),
     ];
     return MaterialApp(
