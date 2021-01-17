@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modulate_vsc/screens/home.dart';
+import 'package:modulate_vsc/screens/learn.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
 import 'package:modulate_vsc/src/track.dart';
 
@@ -99,7 +101,10 @@ class _CreateTrackState extends State<CreateTrack> {
                   String uid = FirebaseAuth.instance.currentUser.uid;
                   var result =
                       await DatabaseService(uid).addTrack(track.getMap());
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Home()));
                 })
           ],
         ),
