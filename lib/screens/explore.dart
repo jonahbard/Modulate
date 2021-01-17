@@ -32,9 +32,19 @@ class _ExplorePageState extends State<ExplorePage> {
                 padding: EdgeInsets.all(8),
                 child: Column(
                   children: [
-                    Text(trackName),
-                    Text("$modules Modules",
-                        style: TextStyle(color: Colors.grey))
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
+                      child: SizedBox(
+                          width: double.infinity, child: Text(trackName)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Text("$modules Modules",
+                            style: TextStyle(color: Colors.grey)),
+                      ),
+                    )
                   ],
                 ),
               ))
