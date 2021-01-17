@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modulate_vsc/screens/module_home.dart';
@@ -16,6 +18,15 @@ class _TrackHomeState extends State<TrackHome> {
   String name;
   List<dynamic> _moduleNames = [];
   List<dynamic> _moduleInfo = [];
+  List<MaterialColor> _colorsList = [
+    Colors.red,
+    Colors.purple,
+    Colors.lightGreen,
+    Colors.orange,
+    Colors.yellow,
+    Colors.blueGrey,
+  ];
+  
 
   _TrackHomeState(String name) {
     this.name = name;
@@ -73,9 +84,11 @@ class _TrackHomeState extends State<TrackHome> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
+    var color = Random().nextInt(_colorsList.length);
+        return Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: _colorsList[color],
         actions: [
           IconButton(
               icon: Icon(
@@ -91,7 +104,7 @@ class _TrackHomeState extends State<TrackHome> {
             children: [
               Container(
                 height: size.height * 0.15,
-                color: Colors.blue,
+                color: _colorsList[color],
               ),
               Column(
                 children: [
