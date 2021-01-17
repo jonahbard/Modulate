@@ -12,7 +12,6 @@ class CreateTrack extends StatefulWidget {
 
 class _CreateTrackState extends State<CreateTrack> {
   String _name = "name";
-
   List<String> _moduleNames = [""];
   List<String> _moduleContents = [""];
 
