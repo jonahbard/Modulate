@@ -17,7 +17,7 @@ class _TrackHomeState extends State<TrackHome> {
   List<dynamic> _moduleNames = [];
   List<dynamic> _moduleInfo = [];
 
-  _TrackHomeState(String name){
+  _TrackHomeState(String name) {
     this.name = name;
     getData();
   }
@@ -45,7 +45,10 @@ class _TrackHomeState extends State<TrackHome> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return ModuleHome();
+                    return ModuleHome(
+                      name: _moduleNames[index],
+                      info: _moduleInfo[index],
+                    );
                   },
                 ),
               );

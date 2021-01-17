@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ModuleHome extends StatelessWidget {
+  final String name;
+  final String info;
+
+  ModuleHome({this.name, this.info});
+
   @override
   Widget build(BuildContext context) {
+    print(name);
     Size size = MediaQuery.of(context).size;
     return Container(
       child: Scaffold(
@@ -29,8 +35,7 @@ class ModuleHome extends StatelessWidget {
                     Container(
                       width: size.width,
                       height: size.height * 0.08,
-                      child: Text(
-                        "Module Info",
+                      child: Text(name,
                         style: TextStyle(fontSize: 40, color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -45,28 +50,29 @@ class ModuleHome extends StatelessWidget {
                             "Home",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             "Tasks",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                           Text(
                             "Goals",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                           Text(
                             "Notes",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                         ],
@@ -76,13 +82,16 @@ class ModuleHome extends StatelessWidget {
                 )
               ],
             ),
-            RaisedButton(
-              child: Text(
-                "Stuff",
+            Container(
+              width: size.width,
+              height: size.height * 0.6,
+              padding: EdgeInsets.all(10),
+              child: Text(info,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
             ),
           ],
         ),
