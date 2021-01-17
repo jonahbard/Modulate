@@ -27,7 +27,6 @@ class _LearnPageState extends State<LearnPage> {
             itemCount: trackNames.length,
             itemBuilder: (context, index) {
               return Card(
-                shadowColor: Colors.grey,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

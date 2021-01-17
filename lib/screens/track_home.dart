@@ -36,23 +36,36 @@ class _TrackHomeState extends State<TrackHome> {
   Widget _buildView() {
     return ListView.builder(
         itemCount: _moduleNames.length,
+        padding: EdgeInsets.all(10),
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(_moduleNames[index]),
-            subtitle: Text(_moduleInfo[index]),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ModuleHome(
-                      name: _moduleNames[index],
-                      info: _moduleInfo[index],
-                    );
-                  },
-                ),
-              );
-            },
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            elevation: 10,
+            child: ListTile(
+              contentPadding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 5,
+                bottom: 5,
+              ),
+              title: Text(_moduleNames[index]),
+              subtitle: Text(_moduleInfo[index]),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ModuleHome(
+                        name: _moduleNames[index],
+                        info: _moduleInfo[index],
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
           );
         });
   }
@@ -95,7 +108,7 @@ class _TrackHomeState extends State<TrackHome> {
           ),
           Container(
             width: size.width,
-            height: size.height*0.6,
+            height: size.height * 0.6,
             child: _buildView(),
           )
         ],
