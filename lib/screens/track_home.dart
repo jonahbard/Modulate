@@ -83,13 +83,7 @@ class _TrackHomeState extends State<TrackHome> {
             children: [
               Container(
                 height: size.height * 0.15,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                  color: Colors.blue,
-                ),
+                color: Colors.blue,
               ),
               Column(
                 children: [
