@@ -29,9 +29,10 @@ class _HomeState extends State<Home> {
                 child: Text("New Track"),
                 onPressed: () {
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => CreateTrack()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => CreateTrack()),
+                  );
                 },
               ),
             )
