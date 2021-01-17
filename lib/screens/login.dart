@@ -53,34 +53,46 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
-              RaisedButton(
-                child: Text("Login"),
-                onPressed: () async {
-                  if (_email != null || _password != null) {
-                    String result =
-                        await AuthService().signInWithEmail(_email, _password);
-                    if (result == "success") {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => Home()));
+              SizedBox(
+                width: 200,
+                child: RaisedButton(
+                  child: Text("Login"),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  onPressed: () async {
+                    if (_email != null || _password != null) {
+                      String result = await AuthService()
+                          .signInWithEmail(_email, _password);
+                      if (result == "success") {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Home()));
+                      } else {
+                        print("your info was wrong $result");
+                      }
                     } else {
-                      print("your info was wrong $result");
+                      print("fill out the forms");
                     }
-                  } else {
-                    print("fill out the forms");
-                  }
-                },
+                  },
+                ),
               ),
-              RaisedButton(
-                child: Text("Signup"),
-                onPressed: () {
-                  AuthService().signUpWithEmail(_email, _password);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => Home()));
-                },
+              SizedBox(
+                width: 200,
+                child: RaisedButton(
+                  child: Text("Signup"),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  onPressed: () {
+                    AuthService().signUpWithEmail(_email, _password);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Home()));
+                  },
+                ),
               ),
             ],
           )),
