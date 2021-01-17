@@ -20,13 +20,7 @@ class ModuleHome extends StatelessWidget {
               children: [
                 Container(
                   height: size.height * 0.2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
-                    color: Colors.blue,
-                  ),
+                  color: Colors.blue,
                 ),
                 Column(
                   children: [

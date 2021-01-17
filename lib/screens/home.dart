@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
         body: _pageOptions[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
-          iconSize: 20,
+          iconSize: 35,
           backgroundColor: Colors.grey[200],
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
