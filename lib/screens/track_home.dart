@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
 
 class TrackHome extends StatefulWidget {
-  String name;
+  final String name;
 
   TrackHome({this.name});
 
