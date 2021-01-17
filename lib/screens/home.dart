@@ -19,24 +19,35 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _appbarOptions = <Widget>[
+      AppBar(
+        title: Text("Learn"),
+        actions: [
+          Center(
+            child: FlatButton(
+              child: Text("New Track"),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => CreateTrack()));
+              },
+            ),
+          )
+        ],
+      ),
+      AppBar(
+        title: Text("Explore"),
+        actions: [IconButton(icon: Icon(Icons.search))],
+      ),
+      AppBar(
+        title: Text("Profile"),
+        actions: [IconButton(icon: Icon(Icons.settings))],
+      ),
+    ];
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Learn"),
-          actions: [
-            Center(
-              child: FlatButton(
-                child: Text("New Track"),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => CreateTrack()));
-                },
-              ),
-            )
-          ],
-        ),
+        appBar: _appbarOptions[_currentIndex],
         body: _pageOptions[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
