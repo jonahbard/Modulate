@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modulate_vsc/screens/module_home.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
 
 class TrackHome extends StatefulWidget {
@@ -37,6 +38,16 @@ class _TrackHomeState extends State<TrackHome> {
           return ListTile(
             title: Text(_moduleNames[index]),
             subtitle: Text(_moduleInfo[index]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ModuleHome();
+                  },
+                ),
+              );
+            },
           );
         });
   }

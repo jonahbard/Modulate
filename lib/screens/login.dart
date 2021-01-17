@@ -26,7 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
-                  decoration: InputDecoration(hintText: "Email"),
+                  decoration: InputDecoration(
+                    hintText: "Email",
+                    border: OutlineInputBorder(),
+                  ),
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
                     setState(() {
@@ -38,7 +41,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
-                  decoration: InputDecoration(hintText: "Password"),
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    border: OutlineInputBorder(),
+                  ),
                   obscureText: true,
                   onChanged: (value) {
                     setState(() {

@@ -117,14 +117,20 @@ class _CreateTrackState extends State<CreateTrack> {
       body: Container(
           child: Column(
         children: [
-          TextField(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
               onChanged: (val) {
                 _name = val;
                 //Navigator.pop(context);
               },
               decoration: InputDecoration(
-                  hintText: "Enter Track Name...",
-                  contentPadding: const EdgeInsets.all(16.0))),
+                hintText: "Enter Track Name...",
+                contentPadding: const EdgeInsets.all(16.0),
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ),
           Expanded(
             child: _buildModuleList(),
           ),

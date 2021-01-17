@@ -31,11 +31,7 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      await DatabaseService(user.uid).createUserData(
-          Track("track 1 new user", ["Module1", "Module2"],
-                  ["content1", "content2"], 5)
-              .getMap(),
-          user.email);
+      await DatabaseService(user.uid).createUserData(null , user.email);
     } catch (e) {
       print("something went wrong $e");
     }
