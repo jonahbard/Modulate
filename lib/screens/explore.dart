@@ -141,7 +141,7 @@ class _ExplorePageState extends State<ExplorePage> {
                       AssetImage('assets/society.jpg')),
                   exploreCard("US History", 36, AssetImage('assets/usa.jpg')),
                   exploreCard(
-                      "Webs Design", 16, AssetImage('assets/webdev.jpg')),
+                      "Web Design", 16, AssetImage('assets/webdev.jpg')),
                 ],
               ),
             )
