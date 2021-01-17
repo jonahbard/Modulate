@@ -12,6 +12,8 @@ class _LearnPageState extends State<LearnPage> {
   bool showTracks = false;
   List<String> trackNames;
   List<int> progress;
+  List<String> moduleNames;
+  List<String> moduleContent;
 
   _LearnPageState() {
     getTracks();
@@ -28,11 +30,13 @@ class _LearnPageState extends State<LearnPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TrackHome(name: trackNames[index]),
+                      builder: (context) {
+                        var data = getData(index);
+                        return TrackHome(name: trackNames[index]);
+                      },
                     ),
                   );
                 },
-
               );
             },
           )
@@ -47,6 +51,12 @@ class _LearnPageState extends State<LearnPage> {
       progress = result[1];
       showTracks = true;
     }
+  }
+
+  getData(int index) async {
+    String uid = FirebaseAuth.instance.currentUser.uid;
+    var moduleResult = await DatabaseService(uid).getTrack(trackNames[index]);
+    
   }
 
   @override

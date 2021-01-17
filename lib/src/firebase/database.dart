@@ -51,14 +51,16 @@ class DatabaseService {
   Future getTrack(String trackName) async {
     List<String> moduleNames;
     List<int> moduleContent;
-
+    Map<String, dynamic> data; 
     await users
         .doc(uid)
         .collection("Tracks")
         .doc(trackName)
         .get()
-        .then((snapshot) => {
-              if (snapshot.exists) {print("snapshotdata ${snapshot.data()}")}
+        .then((snapshot){
+              if (snapshot.exists) {
+                  data = snapshot.data();
+                }
             });
   }
 
