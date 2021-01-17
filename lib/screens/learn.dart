@@ -15,6 +15,14 @@ class _LearnPageState extends State<LearnPage> {
   List<int> progress;
   List<String> moduleNames;
   List<String> moduleContent;
+  List<String> completeOptions = [
+    "2/5 Module Complete",
+    "0/1 Module Complete",
+    "1/2 Module Complete",
+    "3/4 Module Complete",
+    "2/3 Module Complete",
+    "2/3 Module Complete"
+  ];
 
   _LearnPageState() {
     getTracks();
@@ -33,6 +41,7 @@ class _LearnPageState extends State<LearnPage> {
                 elevation: 10,
                 child: ListTile(
                   title: Text(trackNames[index]),
+                  trailing: Text(completeOptions[index]),
                   onTap: () {
                     Navigator.push(
                       context,
