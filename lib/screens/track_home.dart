@@ -76,6 +76,14 @@ class _TrackHomeState extends State<TrackHome> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+              onPressed: null),
+        ],
       ),
       body: Column(
         children: [
@@ -102,7 +110,7 @@ class _TrackHomeState extends State<TrackHome> {
           ),
           Container(
             width: size.width,
-            height: size.height * 0.6,
+            height: size.height * 0.69,
             child: _buildView(),
           )
         ],
