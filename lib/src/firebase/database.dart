@@ -17,7 +17,10 @@ class DatabaseService {
       "uid": uid,
       "email": email,
     });
-    await users.doc(uid).collection("Tracks").doc(info["name"]).set(info);
+    if(info != null){
+      await users.doc(uid).collection("Tracks").doc(info["name"]).set(info);
+    }
+    
   }
 
   // true if user exists
