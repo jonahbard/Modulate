@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:modulate_vsc/src/module.dart';
+import 'package:modulate_vsc/src/firebase/database.dart';
+import 'package:modulate_vsc/src/track.dart';
 
 class CreateTrack extends StatefulWidget {
   @override
@@ -7,7 +9,11 @@ class CreateTrack extends StatefulWidget {
 }
 
 class _CreateTrackState extends State<CreateTrack> {
-  List<Module> _moduleList;
+  String _name = "name";
+
+  List<String> _moduleNames = [""];
+  List<String> _moduleContents = [""];
+
   void _pushAddEditableModule() {
     String editableName = "";
     String editableContent = "";
@@ -50,12 +56,16 @@ class _CreateTrackState extends State<CreateTrack> {
   }
 
   Widget _buildModuleList() {
-    return new ListView.builder(itemBuilder: (context, index) {
-      if (index < _moduleList.length) {
-        return _buildModuleInList(
-            _moduleList[index].name, _moduleList[index].content, index);
-      }
-    });
+    return new ListView.builder(
+        itemCount: _moduleNames.length,
+        itemBuilder: (context, index) {
+          if (index < _moduleNames.length) {
+            return _buildModuleInList(
+                _moduleNames[index], _moduleContents[index], index);
+          } else {
+            return Text("create a module");
+          }
+        });
   }
 
   Widget _buildModuleInList(String name, String info, int index) {
@@ -69,7 +79,9 @@ class _CreateTrackState extends State<CreateTrack> {
 
   void _addModule(String name, String info) {
     setState(() {
-      _moduleList.add(Module(name, info));
+      print(_moduleNames);
+      _moduleNames.add(name);
+      _moduleContents.add(info);
     });
   }
 
@@ -82,7 +94,11 @@ class _CreateTrackState extends State<CreateTrack> {
           actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.check),
-                onPressed: () {
+                onPressed: () async {
+                  Track track = Track(_name, _moduleNames, _moduleContents, 0);
+                  String uid = FirebaseAuth.instance.currentUser.uid;
+                  var result =
+                      await DatabaseService(uid).addTrack(track.getMap());
                   Navigator.pop(context);
                 })
           ],

@@ -1,6 +1,9 @@
-class Module {
-  String name;
-  String content;
+// class Module {
+//   String name;
+//   String content;
 
-  Module(this.name, this.content);
-}
+//   Module(String name, String content) {
+//     this.name = name;
+//     this.content = content;
+//   }
+// }

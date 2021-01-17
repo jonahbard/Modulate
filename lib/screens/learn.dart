@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
-import 'package:modulate_vsc/src/track.dart';
 
 class LearnPage extends StatefulWidget {
   @override
@@ -9,7 +8,8 @@ class LearnPage extends StatefulWidget {
 }
 
 class _LearnPageState extends State<LearnPage> {
-  TrackList tracks;
+  List<String> trackNames;
+  List<int> progress;
 
   _LearnPageState() {
     getTracks();
@@ -17,22 +17,22 @@ class _LearnPageState extends State<LearnPage> {
 
   getTracks() async {
     String uid = FirebaseAuth.instance.currentUser.uid;
-    if (await DatabaseService(uid).getTracks() == null) {
-      print("no values");
-    } else {
-      tracks = await DatabaseService(uid).getTracks();
+    var result = await DatabaseService(uid).getTracks();
+    if (result[0] != null) {
+      trackNames = result[0];
+      progress = result[1];
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: tracks != null
+      child: trackNames != null
           ? ListView.builder(
-              itemCount: tracks.tracks.length,
+              itemCount: trackNames.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(tracks.tracks[index].name),
+                  title: Text(trackNames[index]),
                 );
               },
             )

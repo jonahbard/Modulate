@@ -11,8 +11,11 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      await DatabaseService(user.uid)
-          .createUserData(List<Track>(),user.email);
+      await DatabaseService(user.uid).createUserData(
+          new Track("track 1", ["Module1", "Module2"], ["content1", "content2"],
+                  5)
+              .getMap(),
+          user.email);
       return "success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -25,8 +28,14 @@ class AuthService {
 
   Future signUpWithEmail(String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      User user = result.user;
+      await DatabaseService(user.uid).createUserData(
+          Track("track 1 new user", ["Module1", "Module2"],
+                  ["content1", "content2"], 5)
+              .getMap(),
+          user.email);
     } catch (e) {
       print("something went wrong $e");
     }

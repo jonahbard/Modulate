@@ -11,14 +11,14 @@ class DatabaseService {
       FirebaseFirestore.instance.collection("users");
 
   Future createUserData(
-    List<Track> tracks,
+    Map<String, dynamic> info,
     String email,
   ) async {
-    return users.doc(uid).set({
+    await users.doc(uid).set({
       "uid": uid,
       "email": email,
-      "tracks": tracks,
     });
+    await users.doc(uid).collection("Tracks").doc(info["name"]).set(info);
   }
 
   // true if user exists
@@ -32,26 +32,22 @@ class DatabaseService {
     }
   }
 
-  Future addTrack(Track newTrack) async {
-    DocumentSnapshot document = await users.doc(uid).get();
-    Map<String, dynamic> data = document.data();
-    var tracks = data["tracks"];
-    tracks.add(newTrack);
-    users.doc(uid).update({
-      "tracks": tracks,
-    });
+  Future addTrack(Map<String, dynamic> info) async {
+    await users.doc(uid).collection("Tracks").doc(info["name"]).set(info);
   }
 
   Future getTracks() async {
-    DocumentSnapshot document = await users.doc(uid).get();
-    addTrack(Track("track 1", null, 5));
-    Map<String, dynamic> data = document.data();
-    print(data);
-    // TrackList tempTracks = TrackList(data["tracks"]);
-    // if (tempTracks.tracks.isEmpty) {
-    //   return null;
-    // } else {
-    //   return tempTracks;
-    // }
+    List<String> trackNames = [];
+    List<int> progress = [];
+    await users.doc(uid).collection("Tracks").get().then((snapshot) => {
+          snapshot.docs.forEach((doc) {
+            trackNames.add(doc.id);
+            progress.add(doc["progress"]);
+          })
+        });
+
+    return [trackNames, progress];
   }
+
+  Future getModules() async {}
 }
