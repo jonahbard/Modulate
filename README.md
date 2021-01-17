@@ -1,6 +1,8 @@
 # Modulate
 
 By Sanath Nair & Jonah Bard
+Created for the Hack the North East Hackathon 2021
+
 
 ## Inspiration
 
