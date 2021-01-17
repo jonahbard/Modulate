@@ -97,7 +97,7 @@ class _CreateTrackState extends State<CreateTrack> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Task"),
+        title: Text("Create Track"),
         leading: IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
@@ -111,10 +111,7 @@ class _CreateTrackState extends State<CreateTrack> {
                 Track track = Track(_name, _moduleNames, _moduleContents, 0);
                 String uid = FirebaseAuth.instance.currentUser.uid;
                 await DatabaseService(uid).addTrack(track.getMap());
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Home()));
+                Navigator.pop(context);
               })
         ],
       ),
@@ -126,13 +123,13 @@ class _CreateTrackState extends State<CreateTrack> {
           child: Column(
         children: [
           TextField(
-                  onChanged: (val) {
-                     _name = val;
-                    //Navigator.pop(context);
-                  },
-                  decoration: InputDecoration(
-                      hintText: "Enter Track Name...",
-                      contentPadding: const EdgeInsets.all(16.0))),
+              onChanged: (val) {
+                _name = val;
+                //Navigator.pop(context);
+              },
+              decoration: InputDecoration(
+                  hintText: "Enter Track Name...",
+                  contentPadding: const EdgeInsets.all(16.0))),
           Expanded(
             child: _buildModuleList(),
           ),
