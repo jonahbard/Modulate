@@ -20,8 +20,8 @@ class _LearnPageState extends State<LearnPage> {
     "0/1 Modules Completed",
     "1/2 Modules Completed",
     "3/4 Modules Completed",
-    "2/3 Modules Completed",
-    "2/3 Modules Completed"
+    "0/1 Modules Completed",
+    "0/2 Modules Completed"
   ];
 
   _LearnPageState() {
