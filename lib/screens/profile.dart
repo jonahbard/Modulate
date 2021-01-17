@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               Container(
                 child: Icon(
-                  Icons.person,
+                  Icons.account_circle,
                   size: size.height * 0.2,
                   color: Colors.redAccent,
                 ),
