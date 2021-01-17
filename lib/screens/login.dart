@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     String result =
                         await AuthService().signInWithEmail(_email, _password);
                     if (result == "success") {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) => Home()));
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text("Signup"),
                 onPressed: () {
                   AuthService().signUpWithEmail(_email, _password);
-                  Navigator.pushReplacement(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => Home()));

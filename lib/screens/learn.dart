@@ -12,7 +12,21 @@ class _LearnPageState extends State<LearnPage> {
   List<int> progress;
 
   _LearnPageState() {
+    print("created");
     getTracks();
+  }
+
+  Widget _buildView(){
+    return trackNames != null
+          ? ListView.builder(
+              itemCount: trackNames.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(trackNames[index]),
+                );
+              },
+            )
+          : Text("No tracks");
   }
 
   getTracks() async {
@@ -27,16 +41,7 @@ class _LearnPageState extends State<LearnPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: trackNames != null
-          ? ListView.builder(
-              itemCount: trackNames.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(trackNames[index]),
-                );
-              },
-            )
-          : Text("No tracks"),
+      child: _buildView(),
     );
   }
 }

@@ -41,8 +41,9 @@ class _CreateTrackState extends State<CreateTrack> {
                     //Navigator.pop(context);
                   },
                   decoration: InputDecoration(
-                      hintText: "Enter module name...",
-                      contentPadding: const EdgeInsets.all(16.0))),
+                    hintText: "Enter module name...",
+                    contentPadding: const EdgeInsets.all(16.0),
+                  )),
               TextField(
                   autofocus: true,
                   onChanged: (val) {
@@ -50,8 +51,9 @@ class _CreateTrackState extends State<CreateTrack> {
                     //Navigator.pop(context);
                   },
                   decoration: InputDecoration(
-                      hintText: "Enter module info...",
-                      contentPadding: const EdgeInsets.all(16.0)))
+                    hintText: "Enter module info...",
+                    contentPadding: const EdgeInsets.all(16.0),
+                  ))
             ],
           ));
     }));
@@ -94,34 +96,48 @@ class _CreateTrackState extends State<CreateTrack> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Create Task"),
-          leading: IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
+      appBar: AppBar(
+        title: Text("Create Task"),
+        leading: IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (BuildContext context) => Home()));
+            }),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.check),
+              onPressed: () async {
+                Track track = Track(_name, _moduleNames, _moduleContents, 0);
+                String uid = FirebaseAuth.instance.currentUser.uid;
+                await DatabaseService(uid).addTrack(track.getMap());
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => Home()));
-              }),
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.check),
-                onPressed: () async {
-                  Track track = Track(_name, _moduleNames, _moduleContents, 0);
-                  String uid = FirebaseAuth.instance.currentUser.uid;
-                  await DatabaseService(uid).addTrack(track.getMap());
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => Home()));
-                })
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: _pushAddEditableModule,
-        ),
-        body: _buildModuleList());
+              })
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: _pushAddEditableModule,
+      ),
+      body: Container(
+          child: Column(
+        children: [
+          TextField(
+                  onChanged: (val) {
+                     _name = val;
+                    //Navigator.pop(context);
+                  },
+                  decoration: InputDecoration(
+                      hintText: "Enter Track Name...",
+                      contentPadding: const EdgeInsets.all(16.0))),
+          Expanded(
+            child: _buildModuleList(),
+          ),
+        ],
+      )),
+    );
   }
 }

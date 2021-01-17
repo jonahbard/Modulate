@@ -1,5 +1,4 @@
 import "package:cloud_firestore/cloud_firestore.dart";
-import 'package:modulate_vsc/src/track.dart';
 
 class DatabaseService {
   final String uid;
