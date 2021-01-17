@@ -21,6 +21,12 @@ class _HomeState extends State<Home> {
     List<Widget> _appbarOptions = <Widget>[
       AppBar(
         title: Text("Learn"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {},
+          )
+        ],
       ),
       AppBar(
         title: Text("Explore"),
