@@ -91,7 +91,11 @@ class _CreateTrackState extends State<CreateTrack> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Create Track"),
-          leading: IconButton(icon: Icon(Icons.close)),
+          leading: IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                Navigator.pop(context);
+              }),
           actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.check),
@@ -100,10 +104,9 @@ class _CreateTrackState extends State<CreateTrack> {
                   String uid = FirebaseAuth.instance.currentUser.uid;
                   var result =
                       await DatabaseService(uid).addTrack(track.getMap());
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => Home()));
+                  Navigator.pop(context
+                      //MaterialPageRoute(builder: (BuildContext context) => Home()));
+                      );
                 })
           ],
         ),
