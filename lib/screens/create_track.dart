@@ -30,27 +30,30 @@ class _CreateTrackState extends State<CreateTrack> {
             ],
           ),
           body: Column(
-            children: <Widget>[
-              TextField(
-                  autofocus: true,
-                  onChanged: (val) {
-                    editableName = val;
-                    //Navigator.pop(context);
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Enter module name...",
-                    contentPadding: const EdgeInsets.all(16.0),
-                  )),
-              TextField(
-                  autofocus: true,
-                  onChanged: (val) {
-                    editableContent = val;
-                    //Navigator.pop(context);
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Enter module info...",
-                    contentPadding: const EdgeInsets.all(16.0),
-                  ))
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                    autofocus: true,
+                    onChanged: (val) {
+                      editableName = val;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Enter module name...",
+                      border: OutlineInputBorder(),
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                    onChanged: (val) {
+                      editableContent = val;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Enter module info...",
+                      border: OutlineInputBorder(),
+                    )),
+              )
             ],
           ));
     }));
