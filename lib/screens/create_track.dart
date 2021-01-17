@@ -24,8 +24,6 @@ class _CreateTrackState extends State<CreateTrack> {
               IconButton(
                   icon: Icon(Icons.check),
                   onPressed: () {
-                    print(editableName);
-                    print(editableContent);
                     _addModule(editableName, editableContent);
                     Navigator.pop(context);
                   })
@@ -86,7 +84,6 @@ class _CreateTrackState extends State<CreateTrack> {
 
   void _addModule(String name, String info) {
     setState(() {
-      print(_moduleNames);
       _moduleNames.add(name);
       _moduleContents.add(info);
     });

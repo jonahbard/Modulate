@@ -45,18 +45,19 @@ class _LearnPageState extends State<LearnPage> {
 
   getTracks() async {
     String uid = FirebaseAuth.instance.currentUser.uid;
-    var result = await DatabaseService(uid).getTracks();
-    if (result[0] != null) {
-      trackNames = result[0];
-      progress = result[1];
-      showTracks = true;
+    List<Object> result = await DatabaseService(uid).getTracks();
+    if (result.isNotEmpty) {
+      setState(() {
+        trackNames = result[0];
+        progress = result[1];
+        showTracks = true;
+      });
     }
   }
 
   getData(int index) async {
     String uid = FirebaseAuth.instance.currentUser.uid;
     var moduleResult = await DatabaseService(uid).getTrack(trackNames[index]);
-    
   }
 
   @override

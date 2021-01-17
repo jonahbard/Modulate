@@ -35,7 +35,7 @@ class DatabaseService {
     await users.doc(uid).collection("Tracks").doc(info["name"]).set(info);
   }
 
-  Future getTracks() async {
+  Future<List<Object>> getTracks() async {
     List<String> trackNames = [];
     List<int> progress = [];
     await users.doc(uid).collection("Tracks").get().then((snapshot) => {
@@ -44,7 +44,6 @@ class DatabaseService {
             progress.add(doc["progress"]);
           })
         });
-
     return [trackNames, progress];
   }
 
@@ -63,6 +62,4 @@ class DatabaseService {
                 }
             });
   }
-
-  Future getModules() async {}
 }
