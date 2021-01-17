@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modulate_vsc/screens/create_track.dart';
 import 'package:modulate_vsc/screens/track_home.dart';
 import 'package:modulate_vsc/src/firebase/database.dart';
 
@@ -22,20 +23,28 @@ class _LearnPageState extends State<LearnPage> {
   Widget _buildView() {
     return showTracks
         ? ListView.builder(
+            padding: EdgeInsets.all(10),
             itemCount: trackNames.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(trackNames[index]),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                         return TrackHome(name: trackNames[index]);
-                      },
-                    ),
-                  );
-                },
+              return Card(
+                shadowColor: Colors.grey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                elevation: 10,
+                child: ListTile(
+                  title: Text(trackNames[index]),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TrackHome(name: trackNames[index]);
+                        },
+                      ),
+                    );
+                  },
+                ),
               );
             },
           )
@@ -56,8 +65,21 @@ class _LearnPageState extends State<LearnPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: _buildView(),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text("Track"),
+        clipBehavior: Clip.none,
+        icon: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => CreateTrack()));
+        },
+      ),
+      body: Center(
+        child: _buildView(),
+      ),
     );
   }
 }
