@@ -6,7 +6,7 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
-  Widget exploreCard(String trackName, int modules) {
+  Widget exploreCard(String trackName, int modules, ImageProvider image) {
     return Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -17,6 +17,7 @@ class _ExplorePageState extends State<ExplorePage> {
           Container(
             width: 150,
             height: 100,
+            child: Image(image: image),
             //color: Colors.blueGrey[300],
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -61,9 +62,12 @@ class _ExplorePageState extends State<ExplorePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  exploreCard("Introduction to AI", 35),
-                  exploreCard("How to spel", 17),
-                  exploreCard("Gramar is cool", 21),
+                  exploreCard(
+                      "Introduction to AI", 35, AssetImage('assets/ai.png')),
+                  exploreCard(
+                      "How to spel", 17, AssetImage('assets/algebra.jpg')),
+                  exploreCard(
+                      "Gramar is cool", 21, AssetImage('assets/globe.jpg')),
                 ],
               ),
             ),
@@ -80,9 +84,12 @@ class _ExplorePageState extends State<ExplorePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  exploreCard("Introduction to AI", 35),
-                  exploreCard("How to spel", 17),
-                  exploreCard("Gramar is cool", 21),
+                  exploreCard("Introduction to AI", 35,
+                      AssetImage('assets/investing.jpg')),
+                  exploreCard(
+                      "How to spel", 17, AssetImage('assets/leadership.jpg')),
+                  exploreCard("Gramar is cool", 21,
+                      AssetImage('assets/linguistic_thing.jpg')),
                 ],
               ),
             ),
@@ -99,9 +106,12 @@ class _ExplorePageState extends State<ExplorePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  exploreCard("Introduction to AI", 35),
-                  exploreCard("How to spel", 17),
-                  exploreCard("Gramar is cool", 21),
+                  exploreCard("Introduction to AI", 35,
+                      AssetImage('assets/writing.jpg')),
+                  exploreCard(
+                      "How to spel", 17, AssetImage('assets/mobiledev.png')),
+                  exploreCard(
+                      "Gramar is cool", 21, AssetImage('assets/money.jpg')),
                 ],
               ),
             ),
@@ -117,9 +127,11 @@ class _ExplorePageState extends State<ExplorePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  exploreCard("Introduction to AI", 35),
-                  exploreCard("How to spel", 17),
-                  exploreCard("Gramar is cool", 21),
+                  exploreCard("Introduction to AI", 35,
+                      AssetImage('assets/society.jpg')),
+                  exploreCard("How to spel", 17, AssetImage('assets/usa.jpg')),
+                  exploreCard(
+                      "Gramar is cool", 21, AssetImage('assets/webdev.jpg')),
                 ],
               ),
             )
